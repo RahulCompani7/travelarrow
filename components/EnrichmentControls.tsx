@@ -113,7 +113,7 @@ export default function EnrichmentControls({
                   animate={{ opacity: [0.5, 1, 0.5] }}
                   transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
                 >
-                  ✨ AI is working its magic on your contacts...
+                  ✨ API's are working its magic on your contacts...
                 </motion.p>
               </motion.div>
             )}

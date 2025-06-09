@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import { motion, AnimatePresence } from "framer-motion"
-import { Download, Table } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { useToast } from "@/hooks/use-toast"
-import ContactRow from "./ContactRow"
-import Papa from "papaparse"
-import type { Contact } from "@/app/page"
+import { motion, AnimatePresence } from "framer-motion";
+import { Download, Table } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { useToast } from "@/hooks/use-toast";
+import ContactRow from "./ContactRow";
+import Papa from "papaparse";
+import type { Contact } from "@/app/page";
 
 interface ResultsTableProps {
-  contacts: Contact[]
+  contacts: Contact[];
 }
 
 export default function ResultsTable({ contacts }: ResultsTableProps) {
-  const { toast } = useToast()
+  const { toast } = useToast();
 
   const downloadCSV = () => {
     const csv = Papa.unparse(
@@ -28,22 +28,22 @@ export default function ResultsTable({ contacts }: ResultsTableProps) {
         company_name: c.company_name,
         company_domain: c.company_domain,
         company_description: c.company_description,
-      })),
-    )
+      }))
+    );
 
-    const blob = new Blob([csv], { type: "text/csv" })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement("a")
-    a.href = url
-    a.download = "enriched-contacts.csv"
-    a.click()
-    URL.revokeObjectURL(url)
+    const blob = new Blob([csv], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "enriched-contacts.csv";
+    a.click();
+    URL.revokeObjectURL(url);
 
     toast({
       title: "Download started! 📥",
       description: "Your enriched contacts CSV is being downloaded.",
-    })
-  }
+    });
+  };
 
   return (
     <motion.div
@@ -64,8 +64,12 @@ export default function ResultsTable({ contacts }: ResultsTableProps) {
                 <Table className="w-5 h-5 text-white" />
               </motion.div>
               <div>
-                <h2 className="text-2xl font-bold text-gray-800">Contact Results</h2>
-                <p className="text-green-600 font-medium">{contacts.length} contacts loaded</p>
+                <h2 className="text-2xl font-bold text-gray-800">
+                  Contact Results
+                </h2>
+                <p className="text-green-600 font-medium">
+                  {contacts.length} contacts loaded
+                </p>
               </div>
             </div>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -83,14 +87,16 @@ export default function ResultsTable({ contacts }: ResultsTableProps) {
           <div className="overflow-x-auto">
             <div className="min-w-full">
               {/* Table Header */}
-              <div className="bg-gray-50/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-10">
-                <div className="grid grid-cols-7 gap-4 p-4 text-sm font-semibold text-gray-700">
+              <div className="bg-gray-50/80 sticky backdrop-blur-sm border-b border-gray-200 sticky top-0 z-10">
+                <div className="grid grid-cols-9 gap-4 p-4 text-sm font-semibold text-gray-700">
                   <div>Status</div>
                   <div>Name</div>
                   <div>Title</div>
                   <div>Email</div>
                   <div>LinkedIn</div>
                   <div>Company</div>
+                  <div>Domain</div>
+                  <div>Description</div>
                   <div>Cost</div>
                 </div>
               </div>
@@ -99,7 +105,11 @@ export default function ResultsTable({ contacts }: ResultsTableProps) {
               <div className="divide-y divide-gray-100">
                 <AnimatePresence>
                   {contacts.map((contact, index) => (
-                    <ContactRow key={contact.id} contact={contact} index={index} />
+                    <ContactRow
+                      key={contact.id}
+                      contact={contact}
+                      index={index}
+                    />
                   ))}
                 </AnimatePresence>
               </div>
@@ -108,5 +118,5 @@ export default function ResultsTable({ contacts }: ResultsTableProps) {
         </CardContent>
       </Card>
     </motion.div>
-  )
+  );
 }
