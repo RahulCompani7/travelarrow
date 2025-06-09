@@ -22,7 +22,7 @@ export interface Contact {
   company_name?: string;
   company_domain?: string;
   company_description?: string;
-  status: "pending" | "in-progress" | "enriched" | "error";
+  status: any;
   enrichedFields: string[];
   cost: number;
 }
