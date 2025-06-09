@@ -107,7 +107,7 @@ export default function PersonEnricher() {
               cost: 0,
             }))
             .filter(
-              (contact: any) =>
+              (contact: Contact) =>
                 contact.full_name || contact.first_name || contact.last_name
             );
 
