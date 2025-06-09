@@ -89,9 +89,9 @@ export default function PersonEnricher() {
 
       Papa.parse(file, {
         header: true,
-        complete: (results: any) => {
+        complete: (results: Papa.ParseResult<Record<string, string>>) => {
           const parsedContacts: Contact[] = results.data
-            .map((row: any, index: any) => ({
+            .map((row: Record<string, string>, index: number) => ({
               id: `contact-${index}`,
               full_name: row["full name"]?.trim() || "",
               first_name: row["first name"]?.trim() || "",
@@ -118,7 +118,7 @@ export default function PersonEnricher() {
             description: `Loaded ${parsedContacts.length} contacts ready for enrichment.`,
           });
         },
-        error: (error: any) => {
+        error: (error: Error) => {
           setIsUploading(false);
           toast({
             title: "Error parsing CSV",

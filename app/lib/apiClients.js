@@ -68,46 +68,6 @@ export async function getCompanyDomain(companyName) {
   }
 }
 
-export async function callScrapinIO(data) {
-  const apiKey = process.env.SCRAPINIO_API_KEY;
-
-  if (!apiKey) {
-    throw new Error("Missing SCRAPINIO_API_KEY in environment variables");
-  }
-
-  try {
-    const response = await fetch("https://api.scrapin.io/v1/search", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        full_name: data.full_name,
-        company_name: data.company_name,
-      }),
-    });
-
-    if (!response.ok) {
-      const text = await response.text();
-      console.error("ScrapinIO API error:", response.status, text);
-      return {};
-    }
-
-    const result = await response.json();
-
-    // Adjust the response property according to actual API response
-    if (result && result.data && result.data.linkedInProfile) {
-      return { linkedInProfile: result.data.linkedInProfile };
-    } else {
-      return {};
-    }
-  } catch (error) {
-    console.error("Error calling ScrapinIO:", error);
-    return {};
-  }
-}
-
 export async function callAnymailFinder(data) {
   const apiKey = process.env.ANYMAILFINDER_API_KEY;
 

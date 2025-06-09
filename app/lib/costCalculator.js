@@ -10,29 +10,22 @@ export function calculateCost(apiName) {
 
 export function decideApisToCall(rowData) {
   const apis = [];
-  let estimatedCost = 0;
-
 
   if (!rowData.linkedInUrl || !rowData.company) {
-    apis.push('SerpAPI');
-    estimatedCost += 0.01;
+    apis.push("SerpAPI");
   }
 
   if (!rowData.companyDescription) {
-    apis.push('ScrapeOwl');
-    estimatedCost += 0.0003;
+    apis.push("ScrapeOwl");
   }
 
   if (!rowData.linkedInProfile) {
-    apis.push('ScrapinIO');
-    estimatedCost += 0.025;
+    apis.push("ScrapinIO");
   }
 
   if (!rowData.email) {
-    apis.push('AnymailFinder');
-    estimatedCost += 0.05;
+    apis.push("AnymailFinder");
   }
 
   return apis;
 }
-

@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
-import { motion, AnimatePresence } from "framer-motion"
-import { Zap, Loader2, Play } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
+import { motion, AnimatePresence } from "framer-motion";
+import { Zap, Loader2, Play } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
 
 interface EnrichmentControlsProps {
-  onStartEnrichment: () => void
-  isEnriching: boolean
-  progress: number
-  contactCount: number
-  enrichedCount: number
+  onStartEnrichment: () => void;
+  isEnriching: boolean;
+  progress: number;
+  contactCount: number;
+  enrichedCount: number;
 }
 
 export default function EnrichmentControls({
@@ -38,7 +38,9 @@ export default function EnrichmentControls({
             >
               <Zap className="w-5 h-5 text-white" />
             </motion.div>
-            <h2 className="text-2xl font-bold text-gray-800">Enrichment Controls</h2>
+            <h2 className="text-2xl font-bold text-gray-800">
+              Enrichment Controls
+            </h2>
           </div>
 
           <div className="flex flex-col lg:flex-row gap-6 items-start lg:items-center justify-between">
@@ -53,7 +55,11 @@ export default function EnrichmentControls({
                   <>
                     <motion.div
                       animate={{ rotate: 360 }}
-                      transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                      transition={{
+                        duration: 2,
+                        repeat: Number.POSITIVE_INFINITY,
+                        ease: "linear",
+                      }}
                     >
                       <Loader2 className="w-6 h-6 mr-3" />
                     </motion.div>
@@ -81,7 +87,9 @@ export default function EnrichmentControls({
                 <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   {enrichedCount}/{contactCount}
                 </div>
-                <div className="text-sm text-gray-600 font-medium">Contacts Enriched</div>
+                <div className="text-sm text-gray-600 font-medium">
+                  Contacts Enriched
+                </div>
               </motion.div>
             </div>
           </div>
@@ -113,7 +121,7 @@ export default function EnrichmentControls({
                   animate={{ opacity: [0.5, 1, 0.5] }}
                   transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
                 >
-                  ✨ API's are working its magic on your contacts...
+                  ✨ API&apos;s are working its magic on your contacts...
                 </motion.p>
               </motion.div>
             )}
@@ -121,5 +129,5 @@ export default function EnrichmentControls({
         </CardContent>
       </Card>
     </motion.div>
-  )
+  );
 }

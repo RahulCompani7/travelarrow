@@ -3,7 +3,6 @@
 import { NextResponse } from "next/server";
 import {
   callSerpAPI,
-  callScrapinIO,
   callAnymailFinder,
   getCompanyDomain,
   callDescriptionFinder,
