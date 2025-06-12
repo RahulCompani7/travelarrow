@@ -86,7 +86,7 @@ export default function ResultsTable({ contacts }: ResultsTableProps) {
         <CardContent className="p-0">
           <div className="overflow-x-auto">
             <div className="min-w-full">
-              {/* Table Header */}
+
               <div className="bg-gray-50/80 sticky backdrop-blur-sm border-b border-gray-200 sticky top-0 z-10">
                 <div className="grid grid-cols-9 gap-4 p-4 text-sm font-semibold text-gray-700">
                   <div>Status</div>
@@ -101,7 +101,7 @@ export default function ResultsTable({ contacts }: ResultsTableProps) {
                 </div>
               </div>
 
-              {/* Table Body */}
+
               <div className="divide-y divide-gray-100">
                 <AnimatePresence>
                   {contacts.map((contact, index) => (

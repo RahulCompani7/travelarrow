@@ -84,7 +84,7 @@ export default function PersonEnricher() {
       setIsUploading(true);
       setUploadedFile(file);
 
-      // Simulate upload delay
+
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
       Papa.parse(file, {
@@ -243,7 +243,7 @@ export default function PersonEnricher() {
     let runningCost = 0;
 
     for (const batch of batches) {
-      // Mark batch contacts as in-progress
+
       setContacts((prev) =>
         prev.map((c) =>
           batch.find((b) => b.id === c.id) ? { ...c, status: "in-progress" } : c
@@ -257,7 +257,7 @@ export default function PersonEnricher() {
           prev.map((c) => {
             const enriched = enrichedBatch.find((e) => e.id === c.id);
             if (enriched) {
-              // Merge old + new enrichedFields and costs
+
               const mergedContact: Contact = {
                 ...enriched,
                 enrichedFields: Array.from(
@@ -268,7 +268,7 @@ export default function PersonEnricher() {
                 ),
                 cost: (c.cost || 0) + (enriched.cost || 0),
               };
-              // Set status based on enrichment completeness
+
               const status = isFullyEnriched(mergedContact)
                 ? "enriched"
                 : "in-progress";
@@ -286,7 +286,7 @@ export default function PersonEnricher() {
         setTotalCost(runningCost);
       } catch (error) {
         console.error("Enrichment batch error:", error);
-        // Optionally update contact status to 'error'
+
       }
     }
 
@@ -301,7 +301,7 @@ export default function PersonEnricher() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white-50 to-cyan-50 relative">
-      {/* Background Pattern */}
+
       <div
         className="absolute inset-0 opacity-30"
         style={{
@@ -315,7 +315,7 @@ export default function PersonEnricher() {
         initial="hidden"
         animate="visible"
       >
-        {/* Header */}
+
         <motion.div variants={itemVariants} className="text-center mb-12">
           <motion.div
             className="inline-flex items-center gap-3 mb-6"
@@ -358,7 +358,7 @@ export default function PersonEnricher() {
           </motion.p>
         </motion.div>
 
-        {/* Stats Cards */}
+
         {contacts.length > 0 && (
           <StatsCards
             totalContacts={contacts.length}
@@ -368,7 +368,7 @@ export default function PersonEnricher() {
           />
         )}
 
-        {/* Upload Section */}
+
         <motion.div variants={itemVariants}>
           <FileUpload
             onFileUpload={handleFileUpload}
@@ -379,7 +379,7 @@ export default function PersonEnricher() {
           />
         </motion.div>
 
-        {/* Enrichment Controls */}
+
         {contacts.length > 0 && (
           <EnrichmentControls
             onStartEnrichment={startEnrichment}
@@ -390,7 +390,7 @@ export default function PersonEnricher() {
           />
         )}
 
-        {/* Results Table */}
+
         {contacts.length > 0 && <ResultsTable contacts={contacts} />}
       </motion.div>
       <Toaster />

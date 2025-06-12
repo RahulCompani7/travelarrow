@@ -2,6 +2,7 @@ const apiCosts = {
   SerpAPI: 0.01,
   ScrapinIO: 0.025,
   AnymailFinder: 0.05,
+  ScrapeOwl: 0.001
 };
 
 export function calculateCost(apiName) {

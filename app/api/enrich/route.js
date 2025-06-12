@@ -13,7 +13,7 @@ export async function POST(request) {
   try {
     const rowData = await request.json();
 
-    // Decide which APIs to call based on input and cost
+
     const apisToCall = decideApisToCall(rowData);
     console.log("APIs to call:", apisToCall);
 
@@ -23,7 +23,7 @@ export async function POST(request) {
     for (const apiName of apisToCall) {
       if (apiName === "SerpAPI") {
         const response = await callSerpAPI(rowData);
-        //console.log('SerpAPI response:', response);
+
         enrichedData = { ...enrichedData, ...response };
         totalCost += calculateCost("SerpAPI");
         if (response.company_name && !enrichedData.company_domain) {
@@ -37,7 +37,7 @@ export async function POST(request) {
         }
       }
     }
-    // After running SerpAPI, we may now have a company name/domain
+
     const hasName =
       rowData.full_name || (rowData.first_name && rowData.last_name);
     const hasCompany =
@@ -48,7 +48,7 @@ export async function POST(request) {
     if (apisToCall.includes("AnymailFinder") && hasName && hasCompany) {
       const emailResponse = await callAnymailFinder({
         ...rowData,
-        ...enrichedData, // pass the updated fields like company name/domain
+        ...enrichedData, 
       });
       console.log("AnymailFinder response:", emailResponse);
       enrichedData = { ...enrichedData, ...emailResponse };
